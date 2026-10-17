@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PulseGuard Z | Supply Risk Monitor</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">PZ</span><div><strong>PulseGuard Z</strong><small>Critical supply intelligence</small></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <a class="nav active" href="#overview">▦ &nbsp; Overview</a>
+    <a class="nav" href="#inventory">▤ &nbsp; Inventory watch</a>
+    <a class="nav" href="#simulation">⌁ &nbsp; Scenario lab</a>
+    <div class="side-note"><span class="live-dot"></span> Prototype environment<small>Demo data · no patient records</small></div>
+    <div class="side-footer">IBM Z Datathon 2026<br><b>Event code: SSF2026</b></div>
+  </aside>
+  <main>
+    <header class="topbar"><div><div class="eyebrow">OPERATIONS / HEALTHCARE</div><h1>Supply risk overview</h1><p class="muted">Spot shortages early. Prioritize action with transparent evidence.</p></div><div class="header-right"><span class="pill"><span class="live-dot"></span> DEMO DATA</span><button id="refresh" class="secondary">↻ Refresh</button></div></header>
+    <section class="hero"><div><div class="eyebrow light">EARLY WARNING SYSTEM</div><h2>Protect critical supplies<br>before stock runs out.</h2><p>Monitor inventory coverage, supplier lead times and incoming deliveries in one operational view.</p></div><div class="hero-art"><div class="orbit o1"></div><div class="orbit o2"></div><div class="pulse">+</div><div class="hero-caption">RISK<br><b>MONITOR</b></div></div></section>
+    <section class="metrics" id="overview">
+      <article class="metric"><div class="metric-label">Tracked items <span>▤</span></div><div class="metric-value" id="totalItems">—</div><div class="metric-foot">Across demo stock locations</div></article>
+      <article class="metric"><div class="metric-label">Critical risk <span class="red">●</span></div><div class="metric-value red" id="criticalItems">—</div><div class="metric-foot">Immediate review recommended</div></article>
+      <article class="metric"><div class="metric-label">High risk <span class="orange">●</span></div><div class="metric-value orange" id="highItems">—</div><div class="metric-foot">Review replenishment plan</div></article>
+      <article class="metric"><div class="metric-label">Average risk score <span>◉</span></div><div class="metric-value" id="averageRisk">—</div><div class="metric-foot">Explainable score, 0–100</div></article>
+    </section>
+    <section class="content-grid">
+      <article class="panel inventory-panel" id="inventory">
+        <div class="panel-head"><div><h3>Inventory watchlist</h3><p>Ranked by current shortage risk</p></div><div class="filters"><input id="search" placeholder="Search supplies…" aria-label="Search supplies"><select id="riskFilter" aria-label="Filter by risk"><option value="">All risk levels</option><option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Supply item</th><th>Stock cover</th><th>Risk</th><th>Score</th><th>Suggested order</th></tr></thead><tbody id="inventoryRows"><tr><td colspan="5">Loading inventory…</td></tr></tbody></table></div>
+        <div class="table-foot"><span id="rowCount">Loading…</span><span>Illustrative data only</span></div>
+      </article>
+      <article class="panel reco-panel"><div class="panel-head"><div><h3>Recommended actions</h3><p>Highest priority first</p></div><span class="spark">↗</span></div><div id="recommendations" class="recommendations">Loading recommendations…</div><div class="method-note"><b>How scoring works</b><p>Risk combines stock coverage vs. supplier lead time, clinical criticality, and listed incoming stock. It is a transparent rule-based prototype, not a validated clinical prediction model.</p></div></article>
+    </section>
+    <section class="panel sim-panel" id="simulation">
+      <div class="panel-head"><div><h3>Demand shock scenario lab</h3><p>Test how a sudden increase in consumption changes risk. No data is modified.</p></div><span class="lab-icon">⌁</span></div>
+      <div class="sim-controls"><label>Supply item<select id="simSku"></select></label><label>Demand multiplier<select id="multiplier"><option value="1">Normal demand (1.0×)</option><option value="1.25" selected>+25% demand (1.25×)</option><option value="1.5">+50% demand (1.5×)</option><option value="2">Double demand (2.0×)</option><option value="3">Triple demand (3.0×)</option></select></label><button id="runSimulation">Run scenario →</button></div>
+      <div id="simulationResult" class="simulation-result"><span class="muted">Choose an item and run a scenario to compare baseline vs. changed demand.</span></div>
+    </section>
+    <footer>PulseGuard Z · IBM Z Datathon 2026 · Event code SSF2026 <span>Built for decision support, not medical advice.</span></footer>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body></html>
